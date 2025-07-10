@@ -36,7 +36,10 @@ A clean, minimalist web application that determines your sports house affiliatio
 
 2. Open index.html in any modern browser
 
-3. 
+3. Demo
+<img width="1440" height="707" alt="Screenshot 2025-07-10 at 10 48 55 PM" src="https://github.com/user-attachments/assets/b347004d-fbd0-442b-b7e1-440a02f0bd4d" />
+<img width="1440" height="709" alt="Screenshot 2025-07-10 at 10 49 17 PM" src="https://github.com/user-attachments/assets/22160848-5bbf-4ab1-ae9b-62f64255b0d6" />
+
 
 
 ## 📝 How It Works
