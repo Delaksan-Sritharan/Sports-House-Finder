@@ -7,15 +7,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form action="submit">
-      <h1>Find your Sports House</h1>
-      <label for="StudentID">Student ID:</label>
-      <input type="text" id="StudentID" name="StudentID" required />
-      <button>Submit</button>
-      <div id="result">
-        <p id="houseName"></p>
-      </div>
-    </form>
+    <div id="splash">
+      <h1>Sports House Finder</h1>
+      <p>Discover which house you belong to based on your student ID</p>
+      <button id="enter-btn">Enter</button>
+    </div>
+
+    <div class="container" id="main-content">
+      <h1>Find Your Sports House</h1>
+
+      <form id="houseForm">
+        <label for="StudentID">Student ID:</label>
+        <input
+          type="text"
+          id="StudentID"
+          name="StudentID"
+          required
+          placeholder="Enter 8-digit ID"
+          maxlength="8"
+        />
+        <button type="submit">Find House</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

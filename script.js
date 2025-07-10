@@ -1,42 +1,73 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const studentIdInput = document.getElementById("StudentID");
-    const form = document.querySelector("form");
-    const resultDisplay = document.getElementById("result");
+// Splash screen transition
+document
+    .getElementById("enter-btn")
+    .addEventListener("click", function () {
+        const splash = document.getElementById("splash");
+        const mainContent = document.getElementById("main-content");
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-        const StudentID = studentIdInput.value;
-        resultDisplay.textContent = "";
+        splash.style.opacity = "0";
 
-        if (StudentID.length !== 8 || isNaN(StudentID)) {
-            // alert("Please enter a valid 8-digit Student ID.");
-            resultDisplay.textContent = "Please enter a valid 8-digit Student ID.";
-            resultDisplay.style.color = "red";
+        setTimeout(function () {
+            splash.style.display = "none";
+            mainContent.style.opacity = "1";
+        }, 500);
+    });
+
+// Main form logic
+document
+    .getElementById("houseForm")
+    .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const studentId = document.getElementById("StudentID").value;
+        const resultDisplay = document.getElementById("result");
+
+        // Validate input
+        if (studentId.length !== 8 || isNaN(studentId)) {
+            resultDisplay.textContent =
+                "Please enter a valid 8-digit Student ID";
+            resultDisplay.style.display = "block";
+            resultDisplay.style.background = "#fff0f0";
+            resultDisplay.style.borderLeft = "4px solid #c73a3a";
             return;
         }
-        const lastTwpDigits = parseInt(StudentID.slice(-2));
-        const reminder = lastTwpDigits % 4;
 
-        let sportsHouse = "";
-        if (reminder === 0) {
-            sportsHouse = "Gamini House"
-            resultDisplay.textContent = "Your Sports House is: Gamini House";
-            resultDisplay.style.color = "blue";
-        } else if (reminder === 1) {
-            sportsHouse = "John House"
-            resultDisplay.textContent = "Your Sports House is: John House";
-            resultDisplay.style.color = "green";
-        } else if (reminder === 2) {
-            sportsHouse = "Peter House"
-            resultDisplay.textContent = "Your Sports House is: Peter House";
-            resultDisplay.style.color = "red";
-        } else if (reminder === 3) {
-            sportsHouse = "Steve House"
-            resultDisplay.textContent = "Your Sports House is: Steve House";
-            resultDisplay.style.color = "orange";
+        const lastTwoDigits = parseInt(studentId.slice(-2));
+        const reminder = lastTwoDigits % 4;
+
+        let house, houseClass, houseColor;
+
+        switch (reminder) {
+            case 0:
+                house = "Gamini House";
+                houseClass = "gamini";
+                houseColor = "Blue";
+                break;
+            case 1:
+                house = "John House";
+                houseClass = "john";
+                houseColor = "Teal";
+                break;
+            case 2:
+                house = "Peter House";
+                houseClass = "peter";
+                houseColor = "Red";
+                break;
+            case 3:
+                house = "Steve House";
+                houseClass = "steve";
+                houseColor = "Gold";
+                break;
         }
 
-        // alert(`Your Sports House is: ${sportsHouse}`);
-        console.log(`Student ID: ${StudentID}, Sports House: ${sportsHouse}, Last Two Digits: ${lastTwpDigits}, Reminder: ${reminder}`);
-    })
-});
+        // Display result
+        resultDisplay.innerHTML = `
+                <div class="house-name">${house}</div>
+                <div>Your color: ${houseColor}</div>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                    Based on the last two digits of your ID: ${lastTwoDigits}
+                </div>
+            `;
+        resultDisplay.className = houseClass;
+        resultDisplay.style.display = "block";
+    });
